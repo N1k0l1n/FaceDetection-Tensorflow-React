@@ -50,3 +50,12 @@ body{
 	border-radius: 122px 156px 164px 157px / 121px 142px 164px 168px;
   }
 }
+
+canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 156px 134px 170px 107px / 125px 124px 133px 123px; /* Match the border-radius of the webcam */
+  }

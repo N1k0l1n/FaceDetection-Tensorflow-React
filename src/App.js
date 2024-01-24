@@ -11,12 +11,7 @@ function App() {
 
   //  Load posenet
   const runFacemesh = async () => {
-    // NEW MODEL
-    const net = await facemesh.createDetector(
-      facemesh.SupportedModels.MediaPipeFaceMesh,
-      { enableIrisTracking: false }
-    );
-
+    const net = await facemesh.load(facemesh.SupportedPackages.mediapipeFacemesh);
     setInterval(() => {
       detect(net);
     }, 10);
@@ -42,20 +37,17 @@ function App() {
       canvasRef.current.height = videoHeight;
 
       // Make Detections
-      const face = await net.estimateFaces({ input: video });
+      const face = await net.estimateFaces({input:video});
       console.log(face);
+
 
       // Get canvas context
       const ctx = canvasRef.current.getContext("2d");
-      requestAnimationFrame(() => {
-        drawMesh(face, ctx);
-      });
+      requestAnimationFrame(()=>{drawMesh(face, ctx)});
     }
   };
 
-  useEffect(() => {
-    runFacemesh();
-  }, []);
+  useEffect(()=>{runFacemesh()}, []);
 
   return (
     <div className="webcam">
